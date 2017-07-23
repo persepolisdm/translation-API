@@ -7,7 +7,7 @@ def get_settings():
         },
 
         'slack': {
-            'token': 'TOKEN FROM SLACK',
+            'token': 'TOKEN FROM SLACK', #TODO: Change This
         }
 
     }
