@@ -5,6 +5,7 @@ from pyramid import request
 from sqlalchemy.exc import DBAPIError
 from ..models.mymodel import MyModel, request_log, access_log, banlist
 from .check_banlist import check
+from .add_request import add
 import datetime
 
 
@@ -26,10 +27,11 @@ def api(request):
     check(request, remote_addr)
 
     header_values = {}
-    name = str(datetime.datetime.now())
 
     for record  in request.POST.items():
         header_values[str(record[0])] = str(record[1])
+
+    add(request, remote_addr, str(header_values))
 
     return(header_values)
 
