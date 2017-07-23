@@ -23,6 +23,17 @@ def api(request):
     if request.method == 'GET':
         return(HTTPForbidden())
 
+    required_pkeys = [
+        'token',
+        'team_id',
+        'team_domain',
+        'service_id',
+        'channel_id',
+        'cannel_name',
+        'user_id',
+        'user_name',
+        'text'
+    ]
     remote_addr = str(request.remote_addr)
     check(request, remote_addr)
 
