@@ -1,11 +1,11 @@
-import datetime
+from datetime import datetime
 from sqlalchemy import (
     Column,
     Index,
     Integer,
     Text,
     String,
-    Datetime,
+    DateTime,
 )
 
 from .meta import Base
@@ -22,21 +22,21 @@ class request_log(Base):
     id = Column(Integer, primary_key=True)
     ip = Column(String)
     values = Column(String)
-    date = Column(Datetime, default=datetime.now)
+    date = Column(DateTime, default=datetime.now)
 
 class access_log(Base):
     __tablename__ = 'access_log'
     id = Column(Integer, primary_key=True)
     ip = Column(String)
     requests = Column(Integer)
-    last_request = Column(Datetime)
-    ban_count = column(Integer)
+    last_request = Column(DateTime)
+    ban_count = Column(Integer)
 
 class banlist(Base):
     __tablename__ = 'banlist'
     id = Column(Integer, primary_key=True)
     ip = Column(String)
-    ban_time = Column(Datetime)
-    expire = Column(Datetime)
-    
+    ban_time = Column(DateTime)
+    expire = Column(DateTime)
+
 Index('my_index', MyModel.name, unique=True, mysql_length=255)
