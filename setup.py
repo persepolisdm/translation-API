@@ -19,6 +19,7 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
+    'gunicorn',
 ]
 
 tests_require = [
@@ -29,7 +30,7 @@ tests_require = [
 
 setup(
     name='pdm_api',
-    version='0.0',
+    version='1.0',
     description='pdm_api',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
@@ -38,10 +39,10 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
     ],
-    author='',
-    author_email='',
-    url='',
-    keywords='web pyramid pylons',
+    author='Sadegh Alirezaie',
+    author_email='sadegh@webgo.ir',
+    url='https://sadegh.io',
+    keywords='web pyramid pylons persepolis api download manager translation slack poeditor',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
