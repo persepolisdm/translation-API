@@ -1,7 +1,7 @@
 from pyramid.response import Response
 from sqlalchemy.exc import DBAPIError
 from pyramid.httpexceptions import HTTPForbidden
-from ..models.mymodel import request_log
+from ...models.mymodel import request_log
 
 def add(request, ip, values):
 

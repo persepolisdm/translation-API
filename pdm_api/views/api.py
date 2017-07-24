@@ -3,8 +3,8 @@ from pyramid.httpexceptions import HTTPForbidden
 from pyramid import request
 from sqlalchemy.exc import DBAPIError
 from ..models.mymodel import MyModel, request_log, access_log, banlist
-from .check_banlist import check
-from .add_request import add
+from .api_scripts.check_banlist import check
+from .api_scripts.add_request import add
 from ..settings import get_settings
 import datetime
 
