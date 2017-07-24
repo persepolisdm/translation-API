@@ -20,14 +20,14 @@ class MyModel(Base): #TODO: Remove
 class request_log(Base):
     __tablename__ = 'request_log'
     id = Column(Integer, primary_key=True)
-    ip = Column(String)
-    values = Column(String)
+    ip = Column(String(15))
+    values = Column(Text)
     date = Column(DateTime, default=datetime.now)
 
 class access_log(Base):
     __tablename__ = 'access_log'
     id = Column(Integer, primary_key=True)
-    ip = Column(String)
+    ip = Column(String(15))
     requests = Column(Integer)
     last_request = Column(DateTime)
     ban_count = Column(Integer)
@@ -35,7 +35,7 @@ class access_log(Base):
 class banlist(Base):
     __tablename__ = 'banlist'
     id = Column(Integer, primary_key=True)
-    ip = Column(String)
+    ip = Column(String(15))
     ban_time = Column(DateTime)
     expire = Column(DateTime)
 

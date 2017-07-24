@@ -8,7 +8,6 @@ def add(request, ip, values):
     try:
         new_record = request_log(ip=ip, values=values)
         request.dbsession.add(new_record)
-        print('success!')
     except DBAPIError:
         return Response(db_err_msg, content_type='text/plain', status=500)
 

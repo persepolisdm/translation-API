@@ -4,6 +4,7 @@ from pyramid import request
 from sqlalchemy.exc import DBAPIError
 from ..models.mymodel import MyModel, request_log, access_log, banlist
 from .api_scripts import check_banlist, add_request
+from .api_scripts.analyze import analyze
 from ..settings import get_settings
 import datetime
 
@@ -21,7 +22,8 @@ def api(request):
         'cannel_name',
         'user_id',
         'user_name',
-        'text'
+        'text',
+        'timestamp'
     ]
 
     remote_addr = str(request.remote_addr)
@@ -37,5 +39,11 @@ def api(request):
         header_values[str(record[0])] = str(record[1])
 
     add_request.add(request, remote_addr, str(header_values))
+
+    result = analyze().complete(str(header_values['text']))
+
+    if result == True:
+        pass #TODO: 100% Translated
+
 
     return(header_values)
