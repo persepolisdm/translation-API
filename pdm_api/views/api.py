@@ -28,9 +28,9 @@ def api(request):
     remote_addr = str(request.remote_addr)
     check(request, remote_addr)
 
-    # for record in required_keys:
-    #     if record not in request.params:
-    #         return(HTTPForbidden())
+    for record in required_keys:
+        if record not in request.params:
+            return(HTTPForbidden())
 
     header_values = {}
 
