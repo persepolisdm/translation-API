@@ -1,4 +1,4 @@
-def get_settings():
+def info():
     values = {
         'repo': {
             'repo_path': 'REPO PATH', #TODO: Change This

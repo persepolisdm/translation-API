@@ -1,8 +1,8 @@
-from .settings import settings
+from .settings import info
 
-class settings:
+class get_settings:
     def __init__(self):
-        self.settings = settings()
+        self.settings = info()
         self.repo = self.settings['repo']
         self.repo_path = self.repo['repo_path']
         self.repo_url = self.repo['repo_url']
