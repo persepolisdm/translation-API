@@ -1,7 +1,9 @@
-# settings
+# custom
 settings.py
 ssh_key
 *.sqlite
+test.file
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

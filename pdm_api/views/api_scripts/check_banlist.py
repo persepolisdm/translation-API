@@ -1,16 +1,19 @@
 from pyramid.response import Response
 from sqlalchemy.exc import DBAPIError
 from pyramid.httpexceptions import HTTPForbidden
-from ..models.mymodel import request_log
+from ...models.mymodel import banlist
 
-def add(request, ip, values):
+def check(request, remote_addr):
 
     try:
-        new_record = request_log(ip=ip, values=values)
-        request.dbsession.add(new_record)
-        print('success!')
+        query = request.dbsession.query(banlist) # Checks if the ip is in banlist
+        records = query.filter(banlist.ip == remote_addr).all()
+
     except DBAPIError:
         return Response(db_err_msg, content_type='text/plain', status=500)
+
+    if remote_addr in records:
+        return(HTTPForbidden())
 
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem

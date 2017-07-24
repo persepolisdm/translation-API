@@ -21,6 +21,7 @@ requires = [
     'waitress',
     'gunicorn',
     'gittle',
+    'mysqlclient',
 ]
 
 tests_require = [

@@ -4,47 +4,19 @@ from pyramid.httpexceptions import HTTPForbidden
 from pyramid import request
 from sqlalchemy.exc import DBAPIError
 from ..models.mymodel import MyModel, request_log, access_log, banlist
-from .check_banlist import check
-from .add_request import add
+from ..settings import get_settings
 import datetime
 
 
 @view_config(route_name='home', renderer='../templates/mytemplate.jinja2')
 def my_view(request):
+
     try:
         query = request.dbsession.query(MyModel)
         one = query.filter(MyModel.name == 'one').first()
     except DBAPIError:
         return Response(db_err_msg, content_type='text/plain', status=500)
     return {'one': one, 'project': 'pdm_api'}
-
-@view_config(route_name='slack', renderer='../templates/slack.jinja2')
-def api(request):
-    if request.method == 'GET':
-        return(HTTPForbidden())
-
-    required_pkeys = [
-        'token',
-        'team_id',
-        'team_domain',
-        'service_id',
-        'channel_id',
-        'cannel_name',
-        'user_id',
-        'user_name',
-        'text'
-    ]
-    remote_addr = str(request.remote_addr)
-    check(request, remote_addr)
-
-    header_values = {}
-
-    for record  in request.POST.items():
-        header_values[str(record[0])] = str(record[1])
-
-    add(request, remote_addr, str(header_values))
-
-    return(header_values)
 
 
 db_err_msg = """\
